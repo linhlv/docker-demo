@@ -13,8 +13,9 @@ services:
       MYSQL_PASSWORD: password
 
   node:
+    container_name: node-sample-demo-c
     image: node-sample-demo
-     build: 
+    build: 
       context: ./node-sample
       #dockerfile: ./node-sample/Dockerfile        
     depends_on:
