@@ -19,7 +19,7 @@ services:
       context: ./node-sample
       #dockerfile: ./node-sample/Dockerfile        
     depends_on:
-       - dbg2
+      - dbg2
     restart: always
     environment:
       DB_HOST: dbg2
