@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: getzdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+
+  node:
+    image: node-sample-demo
+     build: 
+      context: ./node-sample
+      #dockerfile: ./node-sample/Dockerfile        
+    depends_on:
+       - db
+    restart: always
+    environment:
+      DB_HOST: db:3306
+      DB_USER: user
+      DB_PASSWORD: password
+volumes:
+  db_data:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
